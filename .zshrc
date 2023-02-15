@@ -18,7 +18,7 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-export QSYS_ROOTDIR="/home/haydengray/.cache/yay/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/21.1/quartus/sopc_builder/bin"
+export QSYS_ROOTDIR="/home/haydengray/intelFPGA_lite/22.1std/quartus/sopc_builder/bin"
 
 path+=('/home/haydengray/.local/bin')
 export path

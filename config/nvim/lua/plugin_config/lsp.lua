@@ -4,19 +4,20 @@ if not lsp_present then
 end
 local ts_present, ts = pcall(require, 'nvim-treesitter.configs')
 if not ts_present then
-  return end
+  return
+end
 
 lsp.preset('recommended')
 lsp.nvim_workspace()
 lsp.setup_nvim_cmp({
   sources = {
-    {name = 'path'},
-    {name = 'nvim_lsp', keyword_length = 3},
-    {name = 'buffer', keyword_length = 3},
-    {name = 'luasnip', keyword_length = 2},
+    { name = 'path' },
+    { name = 'nvim_lsp', keyword_length = 3 },
+    { name = 'buffer', keyword_length = 3 },
+    { name = 'luasnip', keyword_length = 2 },
   },
   formatting = {
-    fields = {'menu', 'abbr', 'kind'},
+    fields = { 'menu', 'abbr', 'kind' },
     format = function(entry, item)
       local menu_icon = {
         nvim_lsp = 'λ',
@@ -55,9 +56,25 @@ ts.setup({
   highlight = { enable = true },
   indent = { enable = true }
 })
-require'lspconfig'.gdscript.setup{
+
+require 'lspconfig'.gdscript.setup {
   capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
   flags = {
     debounce_text_changes = 150
   }
+}
+
+require 'lspconfig'.svlangserver.setup {
+  on_init = function(client)
+    client.config.settings.systemverilog = {
+      includeIndexing     = { "**/*.{sv,svh}" },
+      excludeIndexing     = { "test/**/*.sv*" },
+      defines             = {},
+      launchConfiguration = "/tools/verilator -sv -Wall --lint-only",
+      formatCommand       = "/tools/verible-verilog-format"
+    }
+
+    client.notify("workspace/didChangeConfiguration")
+    return true
+  end
 }

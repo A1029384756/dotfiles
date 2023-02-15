@@ -10,6 +10,7 @@ vim.opt.autoindent = true
 vim.opt.ch = 0
 vim.opt.clipboard = "unnamedplus"
 vim.opt.scrolloff = 10
+vim.opt.shell = '/bin/fish'
 
 local theme_present, theme = pcall(require, 'gruvbox')
 if theme_present then
