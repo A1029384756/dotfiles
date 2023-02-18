@@ -1,5 +1,5 @@
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader>fe', ':E<CR><CR>', {})
+vim.keymap.set('n', '<leader>fe', ':Explore<CR><CR>', {})
 vim.keymap.set('n', '<esc>', ':noh<CR>', {})
 
 local telescope_present, builtin = pcall(require, 'telescope.builtin')
