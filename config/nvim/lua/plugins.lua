@@ -1,11 +1,42 @@
-return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
-
-  use {
+local plugins = {
+  { 'ellisonleao/gruvbox.nvim', lazy = false },
+  { 'nvim-treesitter/nvim-treesitter' },
+  { 'nvim-lualine/lualine.nvim' },
+  { 'habamax/vim-godot' },
+  {
+    'nvim-telescope/telescope.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
+  {
+    'ThePrimeagen/harpoon',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    config = true
+  },
+  {
+    'goolord/alpha-nvim',
+    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    config = function()
+      require 'alpha'.setup(require 'alpha.themes.startify'.config)
+    end
+  },
+  {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup()
+    end,
+  },
+  {
     'VonHeikemen/lsp-zero.nvim',
-    requires = {
+    lazy = false,
+    dependencies = {
       -- LSP Support
-      { 'neovim/nvim-lspconfig' },
+      { 'neovim/nvim-lspconfig', lazy = false },
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
 
@@ -21,33 +52,9 @@ return require('packer').startup(function(use)
       { 'L3MON4D3/LuaSnip' },
       { 'rafamadriz/friendly-snippets' },
     }
-  }
+  },
+}
 
-  use {
-    'goolord/alpha-nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
-    config = function()
-      require 'alpha'.setup(require 'alpha.themes.startify'.config)
-    end
-  }
+local opts = {}
 
-  use 'nvim-lualine/lualine.nvim'
-
-  use { "akinsho/toggleterm.nvim", tag = '*', config = function()
-    require("toggleterm").setup()
-  end }
-
-  use 'nvim-treesitter/nvim-treesitter'
-  use 'ellisonleao/gruvbox.nvim'
-
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
-    requires = { { 'nvim-lua/plenary.nvim' } }
-  }
-
-  use {
-    'ThePrimeagen/harpoon',
-    requires = { 'nvim-lua/plenary.nvim' }
-  }
-  use 'habamax/vim-godot'
-end)
+require("lazy").setup(plugins, opts)
