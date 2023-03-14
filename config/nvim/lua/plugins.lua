@@ -1,5 +1,5 @@
 local plugins = {
-  { 'ellisonleao/gruvbox.nvim', lazy = false },
+  { 'ellisonleao/gruvbox.nvim',       lazy = false },
   { 'nvim-treesitter/nvim-treesitter' },
   { 'nvim-lualine/lualine.nvim' },
   { 'habamax/vim-godot' },
@@ -36,7 +36,7 @@ local plugins = {
     lazy = false,
     dependencies = {
       -- LSP Support
-      { 'neovim/nvim-lspconfig', lazy = false },
+      { 'neovim/nvim-lspconfig',            lazy = false },
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
 

@@ -13,8 +13,8 @@ lsp.setup_nvim_cmp({
   sources = {
     { name = 'path' },
     { name = 'nvim_lsp', keyword_length = 3 },
-    { name = 'buffer', keyword_length = 3 },
-    { name = 'luasnip', keyword_length = 2 },
+    { name = 'buffer',   keyword_length = 3 },
+    { name = 'luasnip',  keyword_length = 2 },
   },
   formatting = {
     fields = { 'menu', 'abbr', 'kind' },
@@ -52,7 +52,7 @@ vim.diagnostic.config({
 })
 
 ts.setup({
-  ensure_installed = "all",
+  ensure_installed = 'all',
   highlight = { enable = true },
   indent = { enable = true }
 })
@@ -67,14 +67,25 @@ require 'lspconfig'.gdscript.setup {
 require 'lspconfig'.svlangserver.setup {
   on_init = function(client)
     client.config.settings.systemverilog = {
-      includeIndexing     = { "**/*.{sv,svh}" },
-      excludeIndexing     = { "test/**/*.sv*" },
+      includeIndexing     = { '**/*.{sv,svh}' },
+      excludeIndexing     = { 'test/**/*.sv*' },
       defines             = {},
-      launchConfiguration = "/tools/verilator -sv -Wall --lint-only",
-      formatCommand       = "/tools/verible-verilog-format"
+      launchConfiguration = '/tools/verilator -sv -Wall --lint-only',
+      formatCommand       = '/tools/verible-verilog-format'
     }
 
-    client.notify("workspace/didChangeConfiguration")
+    client.notify('workspace/didChangeConfiguration')
     return true
   end
+}
+
+require 'lspconfig'.clangd.setup {
+  on_attach = function()
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+    vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, {})
+    vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, {})
+    vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, {})
+  end,
+  cmd = { 'clangd', '--background-index', '--clang-tidy' },
+  filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto', 'txx', 'tpp' },
 }
