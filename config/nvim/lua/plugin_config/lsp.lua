@@ -1,11 +1,6 @@
-local lsp_present, lsp = pcall(require, 'lsp-zero')
-if not lsp_present then
-  return
-end
-local ts_present, ts = pcall(require, 'nvim-treesitter.configs')
-if not ts_present then
-  return
-end
+local lsp = require('lsp-zero')
+local ts = require('nvim-treesitter.configs')
+local cmp = require('cmp')
 
 lsp.preset('recommended')
 lsp.nvim_workspace()
@@ -42,6 +37,13 @@ lsp.setup_nvim_cmp({
   }
 })
 lsp.setup()
+
+cmp.setup({
+  mapping = {
+    ['<CR>'] = cmp.mapping.confirm({select = false}),
+  }
+})
+
 vim.diagnostic.config({
   virtual_text = true,
   signs = true,
