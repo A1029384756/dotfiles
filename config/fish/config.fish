@@ -7,7 +7,7 @@ function wezterm
 end
 
 function ls
-  exa $argv
+  exa --icons -F -H --group-directories-first --git -h $argv
 end
 
 function vi
