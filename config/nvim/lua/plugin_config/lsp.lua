@@ -58,36 +58,3 @@ ts.setup({
   highlight = { enable = true },
   indent = { enable = true }
 })
-
-require 'lspconfig'.gdscript.setup {
-  capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
-  flags = {
-    debounce_text_changes = 150
-  }
-}
-
-require 'lspconfig'.svlangserver.setup {
-  on_init = function(client)
-    client.config.settings.systemverilog = {
-      includeIndexing     = { '**/*.{sv,svh}' },
-      excludeIndexing     = { 'test/**/*.sv*' },
-      defines             = {},
-      launchConfiguration = '/tools/verilator -sv -Wall --lint-only',
-      formatCommand       = '/tools/verible-verilog-format'
-    }
-
-    client.notify('workspace/didChangeConfiguration')
-    return true
-  end
-}
-
-require 'lspconfig'.clangd.setup {
-  on_attach = function()
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-    vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, {})
-    vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, {})
-    vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, {})
-  end,
-  cmd = { 'clangd', '--background-index', '--clang-tidy' },
-  filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto', 'txx', 'tpp' },
-}
