@@ -10,6 +10,10 @@ function ls
   exa --icons -F -H --group-directories-first --git -h $argv
 end
 
+function cat
+  bat $argv
+end
+
 function vi
   nvim $argv
 end
