@@ -11,7 +11,7 @@ vim.opt.ch = 0
 vim.opt.clipboard = "unnamedplus"
 vim.opt.scrolloff = 10
 
-local theme_present, theme = pcall(require, 'gruvbox')
+local theme_present, theme = pcall(require, 'catppuccin')
 if theme_present then
   theme.setup({
     themes = function ()
@@ -23,7 +23,7 @@ if theme_present then
       }
     end,
   })
-  vim.cmd([[colorscheme gruvbox]])
+  vim.cmd([[colorscheme catppuccin-mocha]])
 end
 
 --Folding options

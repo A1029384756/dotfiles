@@ -1,5 +1,5 @@
 local plugins = {
-  { 'ellisonleao/gruvbox.nvim',       lazy = false },
+  { "catppuccin/nvim", name = "catppuccin" },
   { 'nvim-treesitter/nvim-treesitter' },
   { 'nvim-lualine/lualine.nvim' },
   { 'habamax/vim-godot' },

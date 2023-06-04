@@ -1,0 +1,7 @@
+{
+    "diagnostics.globals": [
+        "vim",
+        "tab_title",
+        "set_tab_theme"
+    ]
+}
