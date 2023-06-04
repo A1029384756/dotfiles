@@ -11,7 +11,7 @@ function ls
 end
 
 function cat
-  bat $argv
+  bat --theme="Catppuccin-mocha" $argv
 end
 
 function vi
