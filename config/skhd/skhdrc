@@ -1,4 +1,6 @@
 cmd - return : /Applications/iTerm.app/Contents/MacOS/iTerm2
+cmd - b : /Applications/Firefox.app/Contents/MacOS/firefox
+cmd - d : /Applications/Discord.app/Contents/MacOS/Discord
 
 alt - x : yabai -m window --focus recent 
 alt - h : yabai -m window --focus west
@@ -30,6 +32,7 @@ cmd + alt - 6 : yabai -m space --focus 6
 cmd + alt - 7 : yabai -m space --focus 7
 cmd + alt - 8 : yabai -m space --focus 8
 cmd + alt - 9 : yabai -m space --focus 9
+cmd + alt - 0 : yabai -m space --focus 10
 
 shift + cmd - 1 : yabai -m window --space 1; yabai -m space --focus 1
 shift + cmd - 2 : yabai -m window --space 2; yabai -m space --focus 2
@@ -40,5 +43,6 @@ shift + cmd - 6 : yabai -m window --space 6; yabai -m space --focus 6
 shift + cmd - 7 : yabai -m window --space 7; yabai -m space --focus 7
 shift + cmd - 8 : yabai -m window --space 8; yabai -m space --focus 8
 shift + cmd - 9 : yabai -m window --space 9; yabai -m space --focus 9
+shift + cmd - 0 : yabai -m window --space 10; yabai -m space --focus 10
 
 alt - y : yabai -m space --mirror y-axis
