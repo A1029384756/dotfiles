@@ -19,7 +19,6 @@ require('plugins')
 require('haydengray/mappings')
 require('haydengray/vimopts')
 
-require('plugin_config.treesitter')
 require('plugin_config.filetype')
 require('plugin_config.mason')
 require('plugin_config.lualine')
