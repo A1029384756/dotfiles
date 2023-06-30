@@ -1,6 +1,5 @@
 local wezterm = require 'wezterm'
 local helpers = require 'helpers'
-local keys = require 'keys'
 
 local config = {}
 
@@ -27,7 +26,5 @@ wezterm.on(
 config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
 config.integrated_title_button_style = "Gnome"
 config.integrated_title_buttons = { 'Close' }
-
-config.keys = keys
 
 return config
