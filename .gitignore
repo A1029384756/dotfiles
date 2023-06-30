@@ -1,6 +1,10 @@
+config/fish/fish
 config/hypr/hypr
 config/kitty/kitty
 config/nvim/nvim
 config/nvim/lazy-lock.json
+config/skhd/skhd
 config/waybar/waybar
+config/wezterm/wezterm
 config/wofi/wofi
+config/yabai/yabai
