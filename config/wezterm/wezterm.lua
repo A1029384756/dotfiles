@@ -1,5 +1,6 @@
 local wezterm = require 'wezterm'
-local helpers = require 'helpers'
+local set_tab_theme = require 'helpers'.set_tab_theme
+local table_utils = require 'table_merge'.table_utils
 
 local config = {}
 
@@ -20,11 +21,16 @@ config.window_frame = {
 
 wezterm.on(
   'format-tab-title',
-  helpers.set_tab_theme
+  set_tab_theme
 )
 
 config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
 config.integrated_title_button_style = "Gnome"
 config.integrated_title_buttons = { 'Close' }
 
-return config
+return table_utils.merge_all(
+  config,
+  require 'wsl',
+  require 'keys',
+  {}
+)
