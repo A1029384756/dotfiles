@@ -24,5 +24,6 @@ function dnf
 end
 
 fish_add_path ~/.cargo/bin/
+
 rtx activate fish | source
 starship init fish | source
