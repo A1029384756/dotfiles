@@ -6,8 +6,8 @@ foreach ($dot in $dotsToInstall) {
   $linkName = Join-Path $configDir $dot
   $srcName = Join-Path $cwd "config" $dot
 
-  $linkName
-  $srcName
+  Write-Output $linkName
+  Write-Output $srcName
 
   New-Item -ItemType SymbolicLink -Path $linkName -Target $srcName
 }
