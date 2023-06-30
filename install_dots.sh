@@ -6,7 +6,7 @@ declare -a dots_to_install=()
 if [[ $platform == 'linux' ]]; then
   dots_to_install=('fish' 'hypr' 'kitty' 'nvim' 'waybar' 'wezterm' 'wofi')
 elif [[ $platform == 'darwin' ]]; then
-  dots_to_install=('fish' 'nvim')
+  dots_to_install=('fish' 'nvim' 'yabai' 'skhd')
 else
   echo "Unsupported platform"
   exit 1
