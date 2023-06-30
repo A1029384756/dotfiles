@@ -4,5 +4,10 @@ $configDir = "$env:USERPROFILE\.config"
 
 foreach ($dot in $dotsToInstall) {
   $linkName = Join-Path $configDir $dot
-  New-Item -ItemType SymbolicLink -Path $linkName -Target (Join-Path $cwd "config" $dot)
+  $srcName = Join-Path $cwd "config" $dot
+
+  $linkName
+  $srcName
+
+  New-Item -ItemType SymbolicLink -Path $linkName -Target $srcName
 }
