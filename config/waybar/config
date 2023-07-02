@@ -6,7 +6,7 @@
     "modules-center": ["custom/clock"],
     "modules-right": ["mpd", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2",  "tray"],
     "hyprland/window": {
-      "format": " {}"
+      "format": " {}"
     },
     "wlr/workspaces": {
      "format": "{icon}",
