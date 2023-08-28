@@ -8,25 +8,25 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.color_scheme = 'Catppuccin Mocha'
-config.window_background_opacity = 0.9
-config.use_fancy_tab_bar = true
-
-config.window_frame = {
-  font = wezterm.font { family = 'Cantarell', weight = 'Bold' },
-  font_size = 11.0,
-  active_titlebar_bg = '#303030',
-  inactive_titlebar_bg = '#242424',
+config = {
+  color_scheme = 'Catppuccin Mocha',
+  window_background_opacity = 0.9,
+  use_fancy_tab_bar = true,
+  window_frame = {
+    font = wezterm.font { family = 'Cantarell', weight = 'Bold' },
+    font_size = 11.0,
+    active_titlebar_bg = '#303030',
+    inactive_titlebar_bg = '#242424',
+  },
+  window_decorations = "INTEGRATED_BUTTONS | RESIZE",
+  integrated_title_button_style = "Gnome",
+  integrated_title_buttons = { 'Close' },
 }
 
 wezterm.on(
   'format-tab-title',
   set_tab_theme
 )
-
-config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
-config.integrated_title_button_style = "Gnome"
-config.integrated_title_buttons = { 'Close' }
 
 return table_utils.merge_all(
   config,
