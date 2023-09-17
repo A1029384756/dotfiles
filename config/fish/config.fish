@@ -8,7 +8,7 @@ function wezterm
 end
 
 function ls
-  exa --icons -F -H --group-directories-first --git -h $argv
+  eza --icons -F -H --group-directories-first --git -h $argv
 end
 
 function cat
