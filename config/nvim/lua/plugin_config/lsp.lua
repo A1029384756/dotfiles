@@ -7,7 +7,20 @@ require('mason-lspconfig').setup_handlers({
     lspconfig[server_name].setup({
       capabilities = lsp_capabilites,
     })
-  end
+  end,
+  ["lua_ls"] = function()
+    require("lspconfig").lua_ls.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" },
+          },
+        },
+      },
+    })
+  end,
 })
 
 local cmp = require('cmp')
