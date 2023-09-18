@@ -1,16 +1,11 @@
 local lspconfig = require('lspconfig')
 local lsp_capabilites = require('cmp_nvim_lsp').default_capabilities()
 
-local handlers =  {
-  ['textDocument/hover'] =  vim.lsp.with(vim.lsp.handlers.hover, {border = 'rounded'}),
-  ['textDocument/signatureHelp'] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'border' }),
-}
 require('mason').setup()
 require('mason-lspconfig').setup_handlers({
   function(server_name)
     lspconfig[server_name].setup({
       capabilities = lsp_capabilites,
-      handlers = handlers
     })
   end
 })
@@ -88,3 +83,10 @@ vim.api.nvim_create_autocmd(
       vim.diagnostic.open_float(nil, opts)
     end
   })
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or 'rounded'
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
