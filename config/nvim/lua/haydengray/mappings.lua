@@ -52,6 +52,6 @@ vim.keymap.set('n', 'K', vim.lsp.buf.hover, {
 vim.keymap.set('n', 'cf', vim.lsp.buf.format, {
   desc = 'Format code'
 })
-vim.keymap.set('n', '<Leader>db', '<cmd> DapToggleBreakpoint <CR>', {
+vim.keymap.set('n', 'tb', '<cmd> DapToggleBreakpoint <CR>', {
   desc = 'Toggle breakpoint'
 })
