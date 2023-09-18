@@ -10,7 +10,7 @@ end
 
 config = {
   color_scheme = 'Catppuccin Mocha',
-  window_background_opacity = 0.9,
+  -- window_background_opacity = 0.9,
   use_fancy_tab_bar = true,
   window_frame = {
     font = wezterm.font { family = 'Cantarell', weight = 'Bold' },

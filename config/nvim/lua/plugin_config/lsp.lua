@@ -1,60 +1,48 @@
-local lsp = require('lsp-zero')
-local ts = require('nvim-treesitter.configs')
+local lspconfig = require('lspconfig')
+local lsp_capabilites = require('cmp_nvim_lsp').default_capabilities()
+
+require('mason').setup()
+require('mason-lspconfig').setup_handlers({
+  function(server_name)
+    lspconfig[server_name].setup({
+      capabilities = lsp_capabilites
+    })
+  end
+})
+
 local cmp = require('cmp')
-
-lsp.preset('recommended')
-lsp.nvim_workspace()
-lsp.setup_nvim_cmp({
-  sources = {
-    { name = 'path' },
-    { name = 'nvim_lsp', keyword_length = 3 },
-    { name = 'buffer',   keyword_length = 3 },
-    { name = 'luasnip',  keyword_length = 2 },
-  },
-  formatting = {
-    fields = { 'menu', 'abbr', 'kind' },
-    format = function(entry, item)
-      local menu_icon = {
-        nvim_lsp = 'λ',
-        luasnip = '⋗',
-        buffer = 'Ω',
-        path = '',
-        nvim_lua = 'Π',
-      }
-
-      item.menu = menu_icon[entry.source.name]
-      return item
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
     end,
   },
-  documentation = {
-    max_height = 15,
-    max_width = 60,
-    border = 'rounded',
-    col_offset = 0,
-    side_padding = 1,
-    winhighlight = 'Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None',
-    zindex = 1001
-  }
-})
-lsp.setup()
-
-cmp.setup({
-  mapping = {
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
-  }
-})
-
-vim.diagnostic.config({
-  virtual_text = true,
-  signs = true,
-  update_in_insert = false,
-  underline = true,
-  severity_sort = false,
-  float = true,
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'path' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['j'] = cmp.mapping.scroll_docs(-4),
+    ['k'] = cmp.mapping.scroll_docs(4),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+  })
 })
 
+local ts = require('nvim-treesitter.configs')
 ts.setup({
-  ensure_installed = 'all',
+  ensure_installed = { 'rust', 'c', 'cpp', 'lua' },
+  sync_install = false,
+  auto_install = true,
+  ignore_install = {},
   highlight = { enable = true },
-  indent = { enable = true }
+  indent = { enable = true },
+  modules = {}
 })
