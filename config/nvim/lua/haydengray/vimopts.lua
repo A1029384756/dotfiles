@@ -22,6 +22,10 @@ if theme_present then
         NormalFloat = { link = "Normal" },
       }
     end,
+    transparent_background = true,
+    integrations = {
+      notify = true,
+    },
   })
   vim.cmd([[colorscheme catppuccin-mocha]])
 end
