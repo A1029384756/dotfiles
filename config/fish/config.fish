@@ -3,6 +3,13 @@ if status is-interactive
 end
 set fish_greeting
 
+function remove_path
+  if set -l index (contains -i "$argv" $fish_user_paths)
+    set -e fish_user_paths[$index]
+    echo "Removed $argv from the path"
+  end
+end
+
 function wezterm
   flatpak run org.wezfurlong.wezterm $argv &; disown
 end
