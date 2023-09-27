@@ -40,6 +40,9 @@ end
 vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, {
   desc = 'Rename current symbol'
 })
+vim.keymap.set('n', '<Leader>a', vim.lsp.buf.code_action, {
+  desc = 'List code actions at symbol'
+})
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {
   desc = 'Goto symbol definition'
 })
