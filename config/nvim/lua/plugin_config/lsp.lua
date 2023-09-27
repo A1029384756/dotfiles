@@ -42,8 +42,6 @@ cmp.setup({
     { name = 'buffer' },
   },
   mapping = cmp.mapping.preset.insert({
-    ['j'] = cmp.mapping.scroll_docs(-4),
-    ['k'] = cmp.mapping.scroll_docs(4),
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
