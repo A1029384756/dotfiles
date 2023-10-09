@@ -3,7 +3,6 @@ local plugins = {
     "catppuccin/nvim",
     name = "catppuccin"
   },
-  { 'navarasu/onedark.nvim' },
   { 'nvim-treesitter/nvim-treesitter' },
   { 'nvim-lualine/lualine.nvim' },
   { 'rcarriga/nvim-notify' },
