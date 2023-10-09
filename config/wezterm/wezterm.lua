@@ -12,6 +12,7 @@ config = {
   color_scheme = 'Catppuccin Mocha',
   -- window_background_opacity = 0.9,
   use_fancy_tab_bar = true,
+  window_background_opacity = 0.9,
   window_frame = {
     font = wezterm.font { family = 'Cantarell', weight = 'Bold' },
     font_size = 11.0,
@@ -21,6 +22,7 @@ config = {
   window_decorations = "INTEGRATED_BUTTONS | RESIZE",
   integrated_title_button_style = "Gnome",
   integrated_title_buttons = { 'Close' },
+  font = wezterm.font 'JetBrainsMono Nerd Font'
 }
 
 wezterm.on(
