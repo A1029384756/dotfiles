@@ -3,6 +3,7 @@ local plugins = {
     "catppuccin/nvim",
     name = "catppuccin"
   },
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   { 'nvim-treesitter/nvim-treesitter' },
   { 'nvim-lualine/lualine.nvim' },
   { 'rcarriga/nvim-notify' },
