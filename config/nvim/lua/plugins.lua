@@ -1,9 +1,9 @@
 local plugins = {
   {
-    "catppuccin/nvim",
-    name = "catppuccin"
+    'catppuccin/nvim',
+    name = 'catppuccin'
   },
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+  { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
   { 'nvim-treesitter/nvim-treesitter' },
   { 'nvim-lualine/lualine.nvim' },
   { 'rcarriga/nvim-notify' },
@@ -28,11 +28,11 @@ local plugins = {
     end
   },
   {
-    "folke/which-key.nvim",
+    'folke/which-key.nvim',
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
-      require("which-key").setup()
+      require('which-key').setup()
     end,
   },
   { 'neovim/nvim-lspconfig' },
@@ -47,15 +47,15 @@ local plugins = {
   { 'onsails/lspkind.nvim' },
   { 'saadparwaiz1/cmp_luasnip' },
   { 'simrat39/rust-tools.nvim' },
-  { "mfussenegger/nvim-dap" },
+  { 'mfussenegger/nvim-dap' },
   {
-    "rcarriga/nvim-dap-ui",
+    'rcarriga/nvim-dap-ui',
     requires = {
-      "mfussenegger/nvim-dap"
+      'mfussenegger/nvim-dap'
     }
   },
 }
 
 local opts = {}
 
-require("lazy").setup(plugins, opts)
+require('lazy').setup(plugins, opts)
