@@ -7,14 +7,14 @@ require('mason-lspconfig').setup_handlers({
       capabilities = lsp_capabilites,
     })
   end,
-  ["lua_ls"] = function()
-    require("lspconfig").lua_ls.setup({
+  ['lua_ls'] = function()
+    require('lspconfig').lua_ls.setup({
       on_attach = on_attach,
       capabilities = capabilities,
       settings = {
         Lua = {
           diagnostics = {
-            globals = { "vim" },
+            globals = { 'vim' },
           },
         },
       },
@@ -63,12 +63,12 @@ cmp.setup({
     end, { 'i', 's' }),
   }),
   formatting = {
-    fields = { "kind", "abbr", "menu" },
+    fields = { 'kind', 'abbr', 'menu' },
     format = function(entry, vim_item)
-      local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
-      local strings = vim.split(kind.kind, "%s", { trimempty = true })
-      kind.kind = " " .. (strings[1] or "") .. " "
-      kind.menu = "    (" .. (strings[2] or "") .. ")"
+      local kind = require('lspkind').cmp_format({ mode = 'symbol_text', maxwidth = 50 })(entry, vim_item)
+      local strings = vim.split(kind.kind, '%s', { trimempty = true })
+      kind.kind = ' ' .. (strings[1] or '') .. ' '
+      kind.menu = '    (' .. (strings[2] or '') .. ')'
 
       return kind
     end,
@@ -101,7 +101,7 @@ vim.api.nvim_create_autocmd(
     callback = function()
       local opts = {
         focusable = false,
-        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
         border = 'rounded',
         source = 'always',
         prefix = ' ',
@@ -110,6 +110,16 @@ vim.api.nvim_create_autocmd(
       vim.diagnostic.open_float(nil, opts)
     end
   })
+
+vim.api.nvim_create_autocmd(
+  'BufWritePost',
+  {
+    pattern = { '*.py', '*.rs', '*.ts', '*.js', '*.lua', '*.tf' },
+    callback = function()
+        vim.lsp.buf.format()
+    end
+  }
+)
 
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
