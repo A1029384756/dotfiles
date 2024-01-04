@@ -35,7 +35,3 @@ fish_add_path /opt/homebrew/bin/
 
 starship init fish | source
 /home/haydengray/.local/bin/mise activate fish | source
-
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
