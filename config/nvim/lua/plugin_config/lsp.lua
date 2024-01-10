@@ -114,9 +114,10 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd(
   'BufWritePost',
   {
-    pattern = { '*.py', '*.rs', '*.ts', '*.js', '*.lua', '*.tf' },
     callback = function()
+      if vim.lsp.buf.server_ready() then
         vim.lsp.buf.format()
+      end
     end
   }
 )
