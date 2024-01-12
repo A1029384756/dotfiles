@@ -34,4 +34,4 @@ fish_add_path ~/.cargo/bin/
 fish_add_path /opt/homebrew/bin/
 
 starship init fish | source
-/home/haydengray/.local/bin/mise activate fish | source
+mise activate fish | source
