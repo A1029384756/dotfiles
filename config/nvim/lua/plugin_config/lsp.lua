@@ -115,8 +115,11 @@ vim.api.nvim_create_autocmd(
   'BufWritePost',
   {
     callback = function()
-      if vim.lsp.buf.server_ready() then
-        vim.lsp.buf.format()
+      local client = vim.lsp.get_active_clients()[1]
+      if client then
+        if client.server_capabilities.documentFormattingProvider then
+          vim.lsp.buf.format()
+        end
       end
     end
   }
