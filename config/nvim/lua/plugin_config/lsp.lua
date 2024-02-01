@@ -92,8 +92,8 @@ ts.setup({
   sync_install = false,
   auto_install = true,
   ignore_install = {},
-  highlight = { enable = true },
-  indent = { enable = true },
+  highlight = { enable = true, },
+  indent = { enable = true, },
   modules = {}
 })
 

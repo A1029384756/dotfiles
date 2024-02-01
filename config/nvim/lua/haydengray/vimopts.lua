@@ -14,9 +14,9 @@ vim.opt.scrolloff = 10
 local theme_present, theme = pcall(require, 'catppuccin')
 if theme_present then
   theme.setup({
-    themes = function ()
+    themes = function()
       return {
-        Normal = { bg = '#1F2223'},
+        Normal = { bg = '#1F2223' },
         Comment = { fg = '#928374', italic = true },
         ErrorMsg = { fg = "black", bg = "#ec6075", standout = true },
         NormalFloat = { link = "Normal" },
@@ -29,11 +29,6 @@ if theme_present then
   })
   vim.cmd([[colorscheme catppuccin-mocha]])
 end
-
---Folding options
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldlevel = 99
 
 vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
