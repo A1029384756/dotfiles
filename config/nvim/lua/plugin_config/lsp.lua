@@ -20,6 +20,17 @@ require('mason-lspconfig').setup_handlers({
       },
     })
   end,
+  ['arduino_language_server'] = function()
+    require('lspconfig').arduino_language_server.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      cmd = {
+        'arduino-language-server',
+        '-fqbn',
+        'arduino:avr:mega'
+      },
+    }
+  end,
 })
 
 local cmp = require('cmp')
