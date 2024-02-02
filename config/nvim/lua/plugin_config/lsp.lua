@@ -122,11 +122,28 @@ vim.api.nvim_create_autocmd(
     end
   })
 
+local get_lsp_client = function()
+  local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+  local clients = vim.lsp.buf_get_clients()
+  if next(clients) == nil then
+    return nil
+  end
+
+  for _, client in pairs(clients) do
+    local filetypes = client.config.filetypes
+    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+      return client
+    end
+  end
+
+  return nil
+end
+
 vim.api.nvim_create_autocmd(
   'BufWritePost',
   {
     callback = function()
-      local client = vim.lsp.get_active_clients()[1]
+      local client = get_lsp_client()
       if client then
         if client.server_capabilities.documentFormattingProvider then
           vim.lsp.buf.format()
