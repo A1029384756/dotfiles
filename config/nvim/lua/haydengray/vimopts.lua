@@ -1,15 +1,16 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
-vim.opt.background = "dark"
+vim.opt.background = 'dark'
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.autoindent = true
 vim.opt.ch = 0
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = 'unnamedplus'
 vim.opt.scrolloff = 10
+vim.opt.conceallevel = 1
 
 local theme_present, theme = pcall(require, 'catppuccin')
 if theme_present then
@@ -18,8 +19,8 @@ if theme_present then
       return {
         Normal = { bg = '#1F2223' },
         Comment = { fg = '#928374', italic = true },
-        ErrorMsg = { fg = "black", bg = "#ec6075", standout = true },
-        NormalFloat = { link = "Normal" },
+        ErrorMsg = { fg = 'black', bg = '#ec6075', standout = true },
+        NormalFloat = { link = 'Normal' },
       }
     end,
     transparent_background = true,
