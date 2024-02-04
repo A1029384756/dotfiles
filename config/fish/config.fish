@@ -34,5 +34,6 @@ fish_add_path ~/.cargo/bin/
 fish_add_path ~/.local/bin/
 fish_add_path /opt/homebrew/bin/
 
+set EDITOR nvim
 starship init fish | source
 mise activate fish | source
