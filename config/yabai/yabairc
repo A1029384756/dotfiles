@@ -23,10 +23,3 @@ yabai -m config \
   mouse_follows_focus on \
   window_topmost on
 
-yabai -m config \
-  window_animation_duration 0.2 \
-  window_opacity on \
-  active_window_opacity 0.95 \
-  normal_window_opacity 0.92 \
-  window_opacity_duration 0.2
-
