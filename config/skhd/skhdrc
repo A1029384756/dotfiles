@@ -11,8 +11,6 @@ ctrl + shift - u : yabai -m window --swap south
 ctrl + shift - i : yabai -m window --swap north
 ctrl + shift - o : yabai -m window --swap east
 
-shift + cmd - h : yabai -m window --warp west
-shift + cmd - j : yabai -m window --warp south
 shift + cmd - k : yabai -m window --warp north
 shift + cmd - l : yabai -m window --warp east
 
