@@ -31,6 +31,20 @@ require('mason-lspconfig').setup_handlers({
       },
     }
   end,
+  ['ruff_lsp'] = function()
+    require('lspconfig').ruff_lsp.setup {
+      on_attach = function(client, bufnr)
+        client.server_capabilities.hoverProvider = false
+      end,
+    }
+  end,
+  ['pyright'] = function()
+    require('lspconfig').pyright.setup {
+      on_attach = function(client, bufnr)
+        client.server_capabilities.documentFormattingProvider = false
+      end,
+    }
+  end,
 })
 
 local cmp = require('cmp')
