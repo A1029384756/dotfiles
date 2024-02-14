@@ -23,6 +23,7 @@ local plugins = {
   {
     'goolord/alpha-nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
+    lazy = true,
     config = function()
       require 'alpha'.setup(require 'alpha.themes.startify'.config)
     end
@@ -46,10 +47,17 @@ local plugins = {
   { 'L3MON4D3/LuaSnip' },
   { 'onsails/lspkind.nvim' },
   { 'saadparwaiz1/cmp_luasnip' },
-  { 'simrat39/rust-tools.nvim' },
-  { 'mfussenegger/nvim-dap' },
+  {
+    'simrat39/rust-tools.nvim',
+    lazy = true,
+  },
+  {
+    'mfussenegger/nvim-dap',
+    lazy = true,
+  },
   {
     'rcarriga/nvim-dap-ui',
+    lazy = true,
     requires = {
       'mfussenegger/nvim-dap'
     }
