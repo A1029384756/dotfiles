@@ -1,6 +1,3 @@
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-end
 set fish_greeting
 
 function remove_path
@@ -30,9 +27,12 @@ function dnf
   sudo dnf $argv
 end
 
-fish_add_path ~/.cargo/bin/
 fish_add_path ~/.local/bin/
-fish_add_path /opt/homebrew/bin/
+
+switch (uname)
+  case Darwin
+    fish_add_path /opt/homebrew/bin/
+end
 
 set EDITOR nvim
 starship init fish | source
