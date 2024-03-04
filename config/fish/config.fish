@@ -28,6 +28,9 @@ function dnf
 end
 
 fish_add_path ~/.local/bin/
+fish_add_path ~/.spicetify
+fish_add_path ~/Odin
+fish_add_path ~/ols
 
 switch (uname)
   case Darwin
@@ -37,5 +40,3 @@ end
 set EDITOR nvim
 starship init fish | source
 mise activate fish | source
-
-fish_add_path /home/haydengray/.spicetify
