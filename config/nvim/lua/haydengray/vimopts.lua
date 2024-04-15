@@ -1,6 +1,5 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.termguicolors = true
 vim.opt.background = 'dark'
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2

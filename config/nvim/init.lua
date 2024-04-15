@@ -14,10 +14,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('haydengray/mappings')
-require('haydengray/vimopts')
-
 require('lazy').setup({
   spec = 'haydengray.lazy',
   change_detection = { notify = false },
 })
+
+require('haydengray/mappings')
+require('haydengray/vimopts')
+require('haydengray/filetype_associations')
