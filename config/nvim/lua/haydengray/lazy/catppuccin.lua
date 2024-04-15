@@ -1,6 +1,7 @@
 return {
   'catppuccin/nvim',
   name = 'catppuccin',
+  priority = 1000,
   config = function()
     vim.opt.termguicolors = true
     local theme_present, theme = pcall(require, 'catppuccin')
