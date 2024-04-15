@@ -14,18 +14,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('plugins')
-
 require('haydengray/mappings')
 require('haydengray/vimopts')
 
-require('plugin_config.filetype')
-require('plugin_config.mason')
-require('plugin_config.indent_indicator')
-require('plugin_config.lualine')
-require('plugin_config.lsp')
-require('plugin_config.telescope')
-require('plugin_config.toggleterm')
-require('plugin_config.notify')
-require('plugin_config.rust_tools')
-require('plugin_config.dap_ui')
+require('lazy').setup({
+  spec = 'haydengray.lazy',
+  change_detection = { notify = false },
+})

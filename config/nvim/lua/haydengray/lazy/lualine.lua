@@ -1,3 +1,6 @@
+return {
+ 'nvim-lualine/lualine.nvim',
+config = function()
 local function show_macro_recording()
   local recording_reg = vim.fn.reg_recording()
   if recording_reg == '' then
@@ -46,4 +49,6 @@ require('lualine').setup {
   winbar = {},
   inactive_winbar = {},
   extensions = {}
+}
+  end
 }
