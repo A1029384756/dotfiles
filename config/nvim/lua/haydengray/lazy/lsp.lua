@@ -8,7 +8,7 @@ return {
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-nvim-lua',
-'hrsh7th/cmp-nvim-lsp-signature-help',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
     'L3MON4D3/LuaSnip',
     'onsails/lspkind.nvim',
     'saadparwaiz1/cmp_luasnip',
@@ -75,8 +75,6 @@ return {
         }
       end,
     })
-
-    lspconfig.ols.setup({})
 
     local cmp = require('cmp')
     local luasnip = require('luasnip')
