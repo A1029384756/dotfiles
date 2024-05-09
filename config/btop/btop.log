@@ -1,0 +1,14 @@
+
+2024/05/01 (15:53:56) | ===> btop++ v.1.3.2
+2024/05/01 (15:53:56) | WARNING: NVML: Failed to get maximum GPU power draw, defaulting to 225W: Not Supported
+2024/05/01 (15:53:56) | ERROR: Invalid hex value: 89dceb
+
+# Process box color gradient for threads, mem and cpu usage (Sapphire -> Mauve)
+theme[process_start]=
+
+2024/05/01 (19:56:53) | ===> btop++ v.1.3.2
+2024/05/01 (19:56:53) | WARNING: NVML: Failed to get maximum GPU power draw, defaulting to 225W: Not Supported
+2024/05/01 (19:56:53) | ERROR: Invalid hex value: 89dceb
+
+# Process box color gradient for threads, mem and cpu usage (Sapphire -> Mauve)
+theme[process_start]=

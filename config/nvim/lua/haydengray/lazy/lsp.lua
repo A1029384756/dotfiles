@@ -8,6 +8,7 @@ return {
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-nvim-lua',
+'hrsh7th/cmp-nvim-lsp-signature-help',
     'L3MON4D3/LuaSnip',
     'onsails/lspkind.nvim',
     'saadparwaiz1/cmp_luasnip',
@@ -90,6 +91,7 @@ return {
         documentation = cmp.config.window.bordered(),
       },
       sources = {
+        { name = 'nvim_lsp_signature_help' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         { name = 'path' },
