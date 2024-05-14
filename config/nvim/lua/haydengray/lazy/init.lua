@@ -1,6 +1,12 @@
 return {
   { 'nvim-treesitter/nvim-treesitter' },
   {
+    'm4xshen/autoclose.nvim',
+    config = function()
+      require("autoclose").setup()
+    end
+  },
+  {
     'ThePrimeagen/harpoon',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
