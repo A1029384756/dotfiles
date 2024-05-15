@@ -7,10 +7,6 @@ return {
     end
   },
   {
-    'ThePrimeagen/harpoon',
-    dependencies = { 'nvim-lua/plenary.nvim' }
-  },
-  {
     'goolord/alpha-nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
     config = function()
