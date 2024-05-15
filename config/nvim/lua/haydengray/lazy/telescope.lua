@@ -1,13 +1,7 @@
 return {
-    'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+  'nvim-telescope/telescope.nvim',
+  dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
-    local present, telescope = pcall(require, 'telescope')
-
-    if not present then
-      return
-    end
-
     local options = {
       defaults = {
         vimgrep_arguments = {
@@ -38,7 +32,23 @@ return {
       }
     }
 
-    telescope.setup(options)
-    telescope.load_extension('harpoon')
+    require('telescope').setup(options)
+    require('telescope').load_extension('harpoon')
+
+    vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {
+      desc = 'find files'
+    })
+    vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, {
+      desc = 'grep files'
+    })
+    vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {
+      desc = 'find in buffers'
+    })
+    vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, {
+      desc = 'find harpoon marks'
+    })
+    vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, {
+      desc = 'find diagnostics'
+    })
   end
 }

@@ -203,5 +203,24 @@ return {
       opts.border = opts.border or 'rounded'
       return orig_util_open_floating_preview(contents, syntax, opts, ...)
     end
+
+    vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, {
+      desc = 'Rename current symbol'
+    })
+    vim.keymap.set('n', '<Leader>a', vim.lsp.buf.code_action, {
+      desc = 'List code actions at symbol'
+    })
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {
+      desc = 'Goto symbol definition'
+    })
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, {
+      desc = 'Goto symbol references'
+    })
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, {
+      desc = 'View symbol hover info'
+    })
+    vim.keymap.set('n', 'cf', vim.lsp.buf.format, {
+      desc = 'Format code'
+    })
   end
 }
