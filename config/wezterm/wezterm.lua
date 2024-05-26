@@ -15,14 +15,17 @@ config = {
   window_background_opacity = 0.9,
   window_frame = {
     font = wezterm.font { family = 'Cantarell', weight = 'Bold' },
-    font_size = 11.0,
+    font_size = 12.0,
     active_titlebar_bg = '#303030',
     inactive_titlebar_bg = '#242424',
   },
   window_decorations = "INTEGRATED_BUTTONS | RESIZE",
   integrated_title_button_style = "Gnome",
   integrated_title_buttons = { 'Close' },
-  font = wezterm.font 'JetBrainsMono Nerd Font'
+  font = wezterm.font_with_fallback({
+    { family = 'JetBrainsMono Nerd Font', weight = "Medium", style = "Normal", stretch = "Normal" }
+  }),
+  font_size = 10.0,
 }
 
 wezterm.on(

@@ -130,17 +130,6 @@ return {
       }
     })
 
-    local ts = require('nvim-treesitter.configs')
-    ts.setup({
-      ensure_installed = { 'rust', 'c', 'cpp', 'lua', 'odin' },
-      sync_install = false,
-      auto_install = true,
-      ignore_install = {},
-      highlight = { enable = true, },
-      indent = { enable = true, },
-      modules = {}
-    })
-
     vim.diagnostic.config({
       virtual_text = false,
       signs = true,

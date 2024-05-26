@@ -1,5 +1,4 @@
 return {
-  { 'nvim-treesitter/nvim-treesitter' },
   {
     'm4xshen/autoclose.nvim',
     config = function()

@@ -35,6 +35,8 @@ fish_add_path ~/ols
 switch (uname)
   case Darwin
     fish_add_path /opt/homebrew/bin/
+  case Linux
+    . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
 end
 
 set EDITOR nvim
