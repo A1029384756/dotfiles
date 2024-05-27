@@ -18,6 +18,8 @@ return {
     local lspconfig = require('lspconfig')
     local lsp_capabilites = require('cmp_nvim_lsp').default_capabilities()
 
+    lspconfig.ols.setup({})
+
     require('mason').setup({
       ui = {
         icons = {
@@ -29,7 +31,6 @@ return {
     })
 
     require('mason-lspconfig').setup()
-
     require('mason-lspconfig').setup_handlers({
       function(server_name)
         lspconfig[server_name].setup({
