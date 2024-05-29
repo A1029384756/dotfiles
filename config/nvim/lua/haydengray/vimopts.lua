@@ -10,5 +10,6 @@ vim.opt.ch = 0
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.scrolloff = 10
 vim.opt.conceallevel = 1
+vim.opt.updatetime = 250
 vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })

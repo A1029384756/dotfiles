@@ -1,8 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
@@ -18,64 +16,37 @@ return {
     local lspconfig = require('lspconfig')
     local lsp_capabilites = require('cmp_nvim_lsp').default_capabilities()
 
-    lspconfig.ols.setup({})
+    local lsp_servers = {
+      clangd = 'clangd',
+      ols = 'ols',
+      lua_ls = 'lua-language-server',
+      rust_analyzer = 'rust-analyzer',
+    }
 
-    require('mason').setup({
-      ui = {
-        icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗"
-        }
-      }
-    })
-
-    require('mason-lspconfig').setup()
-    require('mason-lspconfig').setup_handlers({
-      function(server_name)
-        lspconfig[server_name].setup({
+    for lsp, exe in pairs(lsp_servers) do
+      if vim.fn.executable(exe) == 1 then
+        local opts = {
           capabilities = lsp_capabilites,
-        })
-      end,
-      ['lua_ls'] = function()
-        require('lspconfig').lua_ls.setup({
-          on_attach = on_attach,
-          capabilities = capabilities,
-          settings = {
-            Lua = {
-              diagnostics = {
-                globals = { 'vim' },
+        }
+
+        if lsp == 'lua_ls' then
+          opts = {
+            capabilities = lsp_capabilites,
+            settings = {
+              Lua = {
+                diagnostics = {
+                  globals = { 'vim' },
+                },
               },
             },
-          },
-        })
-      end,
-      ['arduino_language_server'] = function()
-        require('lspconfig').arduino_language_server.setup {
-          on_attach = on_attach,
-          capabilities = capabilities,
-          cmd = {
-            'arduino-language-server',
-            '-fqbn',
-            'arduino:avr:mega'
-          },
-        }
-      end,
-      ['ruff_lsp'] = function()
-        require('lspconfig').ruff_lsp.setup {
-          on_attach = function(client, bufnr)
-            client.server_capabilities.hoverProvider = false
-          end,
-        }
-      end,
-      ['pyright'] = function()
-        require('lspconfig').pyright.setup {
-          on_attach = function(client, bufnr)
-            client.server_capabilities.documentFormattingProvider = false
-          end,
-        }
-      end,
-    })
+          }
+        end
+
+        lspconfig[lsp].setup(opts)
+      else
+        vim.notify.notify('Unable to find executable for ' .. lsp)
+      end
+    end
 
     local cmp = require('cmp')
     local luasnip = require('luasnip')
@@ -140,7 +111,6 @@ return {
       float = true,
     })
 
-    vim.o.updatetime = 250
     vim.api.nvim_create_autocmd(
       { 'CursorHold' }, {
         callback = function()
