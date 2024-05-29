@@ -20,6 +20,7 @@ return {
     local lsp_capabilites = require('cmp_nvim_lsp').default_capabilities()
 
     lspconfig.ols.setup({})
+    lspconfig.nil_ls.setup({})
     lspconfig.clangd.setup({})
     lspconfig.rust_analyzer.setup({})
     lspconfig.lua_ls.setup({
