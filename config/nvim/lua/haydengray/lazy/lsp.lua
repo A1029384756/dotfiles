@@ -13,43 +13,26 @@ return {
   },
 
   config = function()
+    local cmp = require('cmp')
+    local luasnip = require('luasnip')
+
     local lspconfig = require('lspconfig')
     local lsp_capabilites = require('cmp_nvim_lsp').default_capabilities()
 
-    local lsp_servers = {
-      clangd = 'clangd',
-      ols = 'ols',
-      lua_ls = 'lua-language-server',
-      rust_analyzer = 'rust-analyzer',
-    }
+    lspconfig.ols.setup({})
+    lspconfig.clangd.setup({})
+    lspconfig.rust_analyzer.setup({})
+    lspconfig.lua_ls.setup({
+      capabilities = lsp_capabilites,
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { 'vim' },
+          },
+        },
+      },
+    })
 
-    for lsp, exe in pairs(lsp_servers) do
-      if vim.fn.executable(exe) == 1 then
-        local opts = {
-          capabilities = lsp_capabilites,
-        }
-
-        if lsp == 'lua_ls' then
-          opts = {
-            capabilities = lsp_capabilites,
-            settings = {
-              Lua = {
-                diagnostics = {
-                  globals = { 'vim' },
-                },
-              },
-            },
-          }
-        end
-
-        lspconfig[lsp].setup(opts)
-      else
-        vim.notify.notify('Unable to find executable for ' .. lsp)
-      end
-    end
-
-    local cmp = require('cmp')
-    local luasnip = require('luasnip')
     cmp.setup({
       snippet = {
         expand = function(args)
