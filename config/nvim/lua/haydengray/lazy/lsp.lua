@@ -19,14 +19,17 @@ return {
     local lspconfig = require('lspconfig')
     local lsp_capabilites = require('cmp_nvim_lsp').default_capabilities()
 
+    lspconfig.nil_ls.setup({})
+
     lspconfig.ols.setup({})
+    lspconfig.glslls.setup({})
+    lspconfig.rust_analyzer.setup({})
+
     lspconfig.terraformls.setup({})
     lspconfig.tflint.setup({})
-    lspconfig.clangd.setup({})
-    lspconfig.nil_ls.setup({})
-    lspconfig.clangd.setup({})
-    lspconfig.rust_analyzer.setup({})
     lspconfig.pylsp.setup({})
+
+    lspconfig.clangd.setup({})
     lspconfig.lua_ls.setup({
       capabilities = lsp_capabilites,
       settings = {
