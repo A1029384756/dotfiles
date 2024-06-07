@@ -29,6 +29,11 @@ return {
     lspconfig.tflint.setup({})
     lspconfig.pylsp.setup({})
 
+    lspconfig.vtsls.setup({
+      cmd = { 'bun', 'run', 'vtsls', '--stdio', },
+    })
+    lspconfig.eslint.setup({})
+
     lspconfig.clangd.setup({})
     lspconfig.lua_ls.setup({
       capabilities = lsp_capabilites,
