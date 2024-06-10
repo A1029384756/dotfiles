@@ -17,6 +17,3 @@ vim.keymap.set('n', '<learder>e', vim.diagnostic.open_float, {
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, {
   desc = 'Open diagnostic [Q]uickfix list'
 })
-vim.keymap.set('n', '<Leader>tb', '<cmd> DapToggleBreakpoint <CR>', {
-  desc = 'Toggle breakpoint'
-})
