@@ -3,7 +3,16 @@ return {
     'vyfor/cord.nvim',
     build = 'fish ./build',
     event = 'VeryLazy',
-    opts = {},
+    opts = {
+      assets = {
+        odin = {
+          name = "Odin", -- "Grug braining"
+          icon = "https://github.com/odin-lang/artwork/blob/master/logo/emblem-260.png?raw=true",
+          tooltop = "odin-lang.org",
+          type = 0,
+        },
+      },
+    },
   },
   {
     'goolord/alpha-nvim',
