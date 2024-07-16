@@ -54,11 +54,9 @@ return {
           return { buffer = bufnr, desc = desc }
         end
 
-        local map = vim.keymap.set
-
-        map("n", "<leader>rh", gs.reset_hunk, opts "Reset Hunk")
-        map("n", "<leader>ph", gs.preview_hunk, opts "Preview Hunk")
-        map("n", "<leader>gb", gs.blame_line, opts "Blame Line")
+        vim.keymap.set("n", "<leader>rh", gs.reset_hunk, opts "reset hunk")
+        vim.keymap.set("n", "<leader>ph", gs.preview_hunk, opts "preview hunk")
+        vim.keymap.set("n", "<leader>gb", gs.blame_line, opts "blame line")
       end,
     }
   },
