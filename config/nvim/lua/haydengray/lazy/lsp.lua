@@ -1,3 +1,5 @@
+local window_borders = 'rounded'
+
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
@@ -17,8 +19,9 @@ return {
   config = function()
     local cmp = require('cmp')
     local luasnip = require('luasnip')
-
     local lspconfig = require('lspconfig')
+    require('lspconfig.ui.windows').default_options.border = window_borders
+
     local lsp_capabilites = require('cmp_nvim_lsp').default_capabilities()
 
     require('mason').setup({
@@ -103,28 +106,13 @@ return {
     })
 
     vim.diagnostic.config({
-      virtual_text = false,
+      virtual_text = true,
       signs = true,
-      update_in_insert = false,
+      update_in_insert = true,
       underline = true,
       severity_sort = false,
-      float = true,
+      float = { border = 'rounded' },
     })
-
-    vim.api.nvim_create_autocmd(
-      { 'CursorHold' }, {
-        callback = function()
-          local opts = {
-            focusable = false,
-            close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
-            border = 'rounded',
-            source = 'always',
-            prefix = ' ',
-            scope = 'cursor',
-          }
-          vim.diagnostic.open_float(nil, opts)
-        end
-      })
 
     local get_lsp_client = function()
       local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
@@ -159,31 +147,44 @@ return {
     )
 
     -- rounded windows
-    local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-      opts.border = 'rounded'
-      local bufnr, winid = orig_util_open_floating_preview(contents, syntax, opts, ...)
-      print(bufnr, winid)
-    end
+    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+      vim.lsp.handlers.signature_help, {
+        border = window_borders,
+        close_events = { "BufHidden", "InsertLeave" },
+      }
+    )
 
-    -- mappings
-    vim.keymap.set('n', 'rn', vim.lsp.buf.rename, {
-      desc = 'Rename current symbol'
-    })
-    vim.keymap.set('n', '<Leader>a', vim.lsp.buf.code_action, {
-      desc = 'List code actions at symbol'
-    })
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {
-      desc = 'Goto symbol definition'
-    })
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, {
-      desc = 'Goto symbol references'
-    })
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, {
-      desc = 'View symbol hover info'
-    })
-    vim.keymap.set('n', 'cf', vim.lsp.buf.format, {
-      desc = 'Format code'
+    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+      vim.lsp.handlers.hover, {
+        border = window_borders,
+      }
+    )
+
+    vim.api.nvim_create_autocmd('LspAttach', {
+      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+      callback = function(ev)
+        -- Enable completion triggered by <c-x><c-o>
+        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+        -- mappings
+        vim.keymap.set('n', 'rn', vim.lsp.buf.rename, {
+          desc = 'Rename current symbol'
+        })
+        vim.keymap.set('n', '<Leader>a', vim.lsp.buf.code_action, {
+          desc = 'List code actions at symbol'
+        })
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {
+          desc = 'Goto symbol definition'
+        })
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, {
+          desc = 'Goto symbol references'
+        })
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, {
+          desc = 'View symbol hover info'
+        })
+        vim.keymap.set('n', 'cf', vim.lsp.buf.format, {
+          desc = 'Format code'
+        })
+      end
     })
   end
 }
