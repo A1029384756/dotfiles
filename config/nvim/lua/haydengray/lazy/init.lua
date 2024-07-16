@@ -29,4 +29,37 @@ return {
       require('which-key').setup()
     end,
   },
+  {
+    'lewis6991/gitsigns.nvim',
+    opts = {
+      signs = {
+        add = { text = "│" },
+        change = { text = "│" },
+        delete = { text = "󰍵" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+        untracked = { text = "│" },
+      },
+      preview_config = {
+        border = 'rounded',
+        style = 'minimal',
+        relative = 'cursor',
+        row = 0,
+        col = 1
+      },
+      on_attach = function()
+        local gs = require('gitsigns')
+
+        local function opts(desc)
+          return { buffer = bufnr, desc = desc }
+        end
+
+        local map = vim.keymap.set
+
+        map("n", "<leader>rh", gs.reset_hunk, opts "Reset Hunk")
+        map("n", "<leader>ph", gs.preview_hunk, opts "Preview Hunk")
+        map("n", "<leader>gb", gs.blame_line, opts "Blame Line")
+      end,
+    }
+  },
 }
