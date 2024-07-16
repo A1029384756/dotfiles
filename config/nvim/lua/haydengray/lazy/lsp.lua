@@ -1,6 +1,8 @@
 return {
-  "neovim/nvim-lspconfig",
+  'neovim/nvim-lspconfig',
   dependencies = {
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
@@ -19,31 +21,33 @@ return {
     local lspconfig = require('lspconfig')
     local lsp_capabilites = require('cmp_nvim_lsp').default_capabilities()
 
-    lspconfig.nil_ls.setup({})
-
-    lspconfig.ols.setup({})
-    lspconfig.glslls.setup({})
-    lspconfig.rust_analyzer.setup({})
-
-    lspconfig.terraformls.setup({})
-    lspconfig.tflint.setup({})
-    lspconfig.pylsp.setup({})
-
-    lspconfig.vtsls.setup({
-      cmd = { 'bun', 'run', 'vtsls', '--stdio', },
-    })
-    lspconfig.eslint.setup({})
-
-    lspconfig.clangd.setup({})
-    lspconfig.lua_ls.setup({
-      capabilities = lsp_capabilites,
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { 'vim' },
-          },
+    require('mason').setup({
+      ui = {
+        icons = {
+          package_installed = '✓',
+          package_pending = '➜',
+          package_uninstalled = '✗'
         },
       },
+    })
+    require('mason-lspconfig').setup()
+    require('mason-lspconfig').setup_handlers({
+      function(server_name)
+        lspconfig[server_name].setup({
+          capabilities = lsp_capabilites,
+        })
+      end,
+      ['lua_ls'] = function()
+        require('lspconfig').lua_ls.setup({
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { 'vim' },
+              },
+            },
+          },
+        })
+      end,
     })
 
     cmp.setup({
@@ -139,6 +143,7 @@ return {
       return nil
     end
 
+    -- format on save
     vim.api.nvim_create_autocmd(
       'BufWritePost',
       {
@@ -153,14 +158,16 @@ return {
       }
     )
 
+    -- rounded windows
     local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
     function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-      opts = opts or {}
-      opts.border = opts.border or 'rounded'
-      return orig_util_open_floating_preview(contents, syntax, opts, ...)
+      opts.border = 'rounded'
+      local bufnr, winid = orig_util_open_floating_preview(contents, syntax, opts, ...)
+      print(bufnr, winid)
     end
 
-    vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, {
+    -- mappings
+    vim.keymap.set('n', 'rn', vim.lsp.buf.rename, {
       desc = 'Rename current symbol'
     })
     vim.keymap.set('n', '<Leader>a', vim.lsp.buf.code_action, {
