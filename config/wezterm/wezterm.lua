@@ -1,6 +1,34 @@
 local wezterm = require 'wezterm'
-local set_tab_theme = require 'helpers'.set_tab_theme
-local table_utils = require 'table_merge'.table_utils
+require("bar").setup({
+  dividers = false, -- or "slant_left", "arrows", "rounded", false
+  indicator = {
+    leader = {
+      enabled = true,
+      off = " ",
+      on = " ",
+    },
+    mode = {
+      enabled = true,
+      names = {
+        resize_mode = "RESIZE",
+        copy_mode = "VISUAL",
+        search_mode = "SEARCH",
+      },
+    },
+  },
+  tabs = {
+    numerals = "arabic",
+    pane_count = "superscript",
+    brackets = {
+      active = { "", ":" },
+      inactive = { "", ":" },
+    },
+  },
+  clock = {
+    enabled = false,
+    format = "%H:%M",
+  },
+})
 
 local config = {}
 
@@ -9,33 +37,22 @@ if wezterm.config_builder then
 end
 
 config = {
+  window_decorations = 'RESIZE',
   color_scheme = 'Catppuccin Mocha',
-  -- window_background_opacity = 0.9,
-  use_fancy_tab_bar = true,
+  font_size = 11,
+  font = wezterm.font 'Maple Mono NF CN',
   window_background_opacity = 0.9,
-  window_frame = {
-    font = wezterm.font { family = 'Cantarell', weight = 'Bold' },
-    font_size = 12.0,
-    active_titlebar_bg = '#303030',
-    inactive_titlebar_bg = '#242424',
-  },
-  window_decorations = "INTEGRATED_BUTTONS | RESIZE",
-  integrated_title_button_style = "Gnome",
-  integrated_title_buttons = { 'Close' },
-  font = wezterm.font_with_fallback({
-    { family = 'JetBrainsMono Nerd Font', weight = "Medium", style = "Normal", stretch = "Normal" }
-  }),
-  font_size = 10.0,
+  warn_about_missing_glyphs = false,
+  enable_tab_bar = true,
+  use_fancy_tab_bar = false,
+  tab_max_width = 22,
+  tab_bar_at_bottom = true,
+  window_padding = {
+    left = '1cell',
+    right = '1cell',
+    top = '1cell',
+    bottom = '0cell',
+  }
 }
 
-wezterm.on(
-  'format-tab-title',
-  set_tab_theme
-)
-
-return table_utils.merge_all(
-  config,
-  require 'wsl',
-  require 'keys',
-  {}
-)
+return config
