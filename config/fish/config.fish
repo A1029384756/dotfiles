@@ -7,10 +7,6 @@ function remove_path
   end
 end
 
-function wezterm
-  flatpak run org.wezfurlong.wezterm $argv &; disown
-end
-
 function ls
   eza --icons -F -H --group-directories-first --git -h $argv
 end
