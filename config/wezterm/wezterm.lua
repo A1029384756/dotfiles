@@ -37,7 +37,7 @@ if wezterm.config_builder then
 end
 
 config = {
-  window_decorations = 'RESIZE',
+  window_decorations = 'TITLE |RESIZE',
   color_scheme = 'Catppuccin Mocha',
   font_size = 11,
   font = wezterm.font 'Maple Mono NF CN',
