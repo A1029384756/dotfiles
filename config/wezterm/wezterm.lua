@@ -37,9 +37,9 @@ if wezterm.config_builder then
 end
 
 config = {
-  window_decorations = 'TITLE |RESIZE',
+  window_decorations = 'NONE',
   color_scheme = 'Catppuccin Mocha',
-  font_size = 11,
+  font_size = 10,
   font = wezterm.font 'Maple Mono NF CN',
   window_background_opacity = 0.9,
   warn_about_missing_glyphs = false,
@@ -48,9 +48,9 @@ config = {
   tab_max_width = 22,
   tab_bar_at_bottom = true,
   window_padding = {
-    left = '1cell',
-    right = '1cell',
-    top = '1cell',
+    left = '0cell',
+    right = '0cell',
+    top = '0.3cell',
     bottom = '0cell',
   }
 }
