@@ -41,7 +41,7 @@ return {
         })
       end,
       ['lua_ls'] = function()
-        require('lspconfig').lua_ls.setup({
+        lspconfig.lua_ls.setup({
           settings = {
             Lua = {
               diagnostics = {
@@ -51,6 +51,22 @@ return {
           },
         })
       end,
+      ['pyright'] = function()
+        lspconfig.pyright.setup({
+          pyright = {
+            disableOrganizeImports = true,
+            disableTaggedHints = true,
+          },
+          python = {
+            analysis = {
+              diagnosticSeverityOverrides = {
+                -- https://github.com/microsoft/pyright/blob/main/docs/configuration.md#type-check-diagnostics-settings
+                reportUndefinedVariable = "none",
+              },
+            },
+          },
+        })
+      end
     })
 
     cmp.setup({
