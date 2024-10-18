@@ -31,8 +31,8 @@ return {
       args = { '--quiet', '--interpreter=dap' },
     }
 
-    dap.configurations.odin = {
-      {
+    dap.configurations = {
+      odin = { {
         type = 'gdb',
         name = 'Run executable (GDB)',
         request = 'launch',
@@ -46,7 +46,22 @@ return {
         end,
         cwd = '${workspaceFolder}',
         stopAtEntry = true,
-      },
+      } },
+      c = { {
+        type = 'gdb',
+        name = 'Run executable (GDB)',
+        request = 'launch',
+        program = function()
+          local path = vim.fn.input({
+            prompt = 'Path to executable: ',
+            default = vim.fn.getcwd() .. '/',
+            completion = 'file'
+          })
+          return (path and path ~= '') and path or dap.ABORT
+        end,
+        cwd = '${workspaceFolder}',
+        stopAtEntry = true,
+      } },
     }
   end
 }
