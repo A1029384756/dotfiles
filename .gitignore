@@ -11,3 +11,4 @@ config/wezterm/wezterm
 config/wofi/wofi
 config/yabai/yabai
 config/yabai/yabai
+config/fish/conf.d
