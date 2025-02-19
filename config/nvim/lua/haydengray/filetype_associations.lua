@@ -9,3 +9,9 @@ vim.api.nvim_create_autocmd(
     pattern = { '*.tpp', '*.txx' },
     command = 'setfiletype cpp',
   })
+
+vim.api.nvim_create_autocmd(
+  { 'BufEnter', 'BufWinEnter' }, {
+    pattern = { '*.slang', "*.shaderslang" },
+    command = 'setfiletype shaderslang',
+  })

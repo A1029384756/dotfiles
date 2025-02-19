@@ -25,6 +25,7 @@ return {
     local lsp_capabilites = require('cmp_nvim_lsp').default_capabilities()
 
     lspconfig.ols.setup({})
+    lspconfig.slangd.setup({})
     require('mason').setup({
       ui = {
         icons = {

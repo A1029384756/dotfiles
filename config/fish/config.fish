@@ -26,6 +26,7 @@ end
 fish_add_path ~/.local/bin/
 fish_add_path ~/Odin
 fish_add_path ~/ols
+fish_add_path ~/slang/bin
 
 switch (uname)
   case Darwin
@@ -41,3 +42,5 @@ mise activate fish | source
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+set --export SDL_VIDEODRIVER wayland
