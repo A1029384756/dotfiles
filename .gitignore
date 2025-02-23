@@ -1,5 +1,7 @@
+config/alacritty/alacritty
 config/btop/btop
 config/fish/fish
+config/ghostty/ghostty
 config/hypr/hypr
 config/kitty/kitty
 config/nvim/nvim
