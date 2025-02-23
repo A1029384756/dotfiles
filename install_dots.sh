@@ -4,7 +4,7 @@ platform=$(uname | tr '[:upper:]' '[:lower:]')
 declare -a dots_to_install=()
 
 if [[ $platform == 'linux' ]]; then
-  dots_to_install=('btop' 'fish' 'hypr' 'kitty' 'nix' 'nvim' 'waybar' 'wezterm' 'wofi')
+  dots_to_install=( 'alacritty' 'btop' 'fish' 'ghostty' 'hypr' 'kitty' 'nix' 'nvim' 'waybar' 'wezterm' 'wofi')
 elif [[ $platform == 'darwin' ]]; then
   dots_to_install=('fish' 'nix' 'nvim' 'yabai' 'skhd')
 else
