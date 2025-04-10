@@ -15,3 +15,9 @@ vim.api.nvim_create_autocmd(
     pattern = { '*.slang', "*.shaderslang" },
     command = 'setfiletype shaderslang',
   })
+
+vim.api.nvim_create_autocmd(
+  { 'BufEnter', 'BufWinEnter' }, {
+    pattern = { '*.vert', "*.frag" },
+    command = 'setfiletype glsl',
+  })
