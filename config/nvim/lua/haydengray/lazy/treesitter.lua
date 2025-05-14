@@ -8,6 +8,7 @@ return {
       auto_install = true,
       ignore_install = {},
       highlight = { enable = true, },
+      injections = { enable = true, },
       indent = { enable = true, },
       modules = {}
     }
