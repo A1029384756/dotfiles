@@ -1,34 +1,6 @@
 return {
   'neovim/nvim-lspconfig',
-  dependencies = {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
-    'hrsh7th/nvim-cmp',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-nvim-lua',
-    'hrsh7th/cmp-nvim-lsp-signature-help',
-    'L3MON4D3/LuaSnip',
-    'onsails/lspkind.nvim',
-    'saadparwaiz1/cmp_luasnip',
-  },
-
   config = function()
-    local cmp = require('cmp')
-    local luasnip = require('luasnip')
-
-    require('mason').setup({
-      ui = {
-        icons = {
-          package_installed = '✓',
-          package_pending = '➜',
-          package_uninstalled = '✗'
-        },
-      },
-    })
-    require('mason-lspconfig').setup()
-
     vim.lsp.enable('ols')
     vim.lsp.config['lua_ls'] = {
       settings = {
@@ -54,73 +26,13 @@ return {
       },
     }
 
-    cmp.setup({
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
-      window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-      },
-      sources = {
-        { name = 'nvim_lsp_signature_help' },
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lua' },
-        { name = 'path' },
-        { name = 'luasnip' },
-        { name = 'buffer' },
-      },
-      mapping = cmp.mapping.preset.insert({
-        ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        ['<Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
-      }),
-      formatting = {
-        fields = { 'kind', 'abbr', 'menu' },
-        format = function(entry, vim_item)
-          local kind = require('lspkind').cmp_format({ mode = 'symbol_text', maxwidth = 50 })(entry, vim_item)
-          local strings = vim.split(kind.kind, '%s', { trimempty = true })
-          kind.kind = ' ' .. (strings[1] or '') .. ' '
-          kind.menu = '    (' .. (strings[2] or '') .. ')'
-
-          return kind
-        end,
-      }
-    })
-
     vim.diagnostic.config({
       virtual_text = true,
       signs = true,
       update_in_insert = true,
       underline = true,
       severity_sort = false,
-      float = { border = 'rounded' },
     })
-
-    local orig_util_open_float_preview = vim.lsp.util.open_floating_preview
-    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-      opts = opts or {}
-      opts.border = 'rounded'
-      return orig_util_open_float_preview(contents, syntax, opts, ...)
-    end
 
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('UserLspConfig', {}),
