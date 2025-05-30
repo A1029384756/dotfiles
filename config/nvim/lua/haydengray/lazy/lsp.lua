@@ -2,7 +2,7 @@ return {
   'neovim/nvim-lspconfig',
   config = function()
     vim.lsp.enable('ols')
-    vim.lsp.config['lua_ls'] = {
+    vim.lsp.config('lua_ls', {
       settings = {
         Lua = {
           diagnostics = {
@@ -10,8 +10,8 @@ return {
           },
         },
       },
-    }
-    vim.lsp.config['pyright'] = {
+    })
+    vim.lsp.config('pyright', {
       pyright = {
         disableOrganizeImports = true,
         disableTaggedHints = true,
@@ -24,7 +24,7 @@ return {
           },
         },
       },
-    }
+    })
 
     vim.diagnostic.config({
       virtual_text = true,
