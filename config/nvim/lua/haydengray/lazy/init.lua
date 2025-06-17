@@ -53,7 +53,7 @@ return {
         row = 0,
         col = 1
       },
-      on_attach = function()
+      on_attach = function(bufnr)
         local gs = require('gitsigns')
 
         local function opts(desc)
