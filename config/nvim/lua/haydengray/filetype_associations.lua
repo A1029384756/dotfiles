@@ -9,5 +9,7 @@ vim.filetype.add({
     shaderslang = 'shaderslang',
     vert = 'glsl',
     frag = 'glsl',
+    container = 'ini',
+    pod = 'ini',
   }
 })
