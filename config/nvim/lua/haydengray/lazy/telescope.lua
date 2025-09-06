@@ -7,8 +7,7 @@ return {
 				vimgrep_arguments = {
 					"rg",
 					"--color=never",
-					"--with-filename",
-					"--line-number",
+					"--with-filename", "--line-number",
 					"--column",
 					"--smart-case",
 				},
@@ -40,6 +39,9 @@ return {
 		})
 		vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, {
 			desc = 'grep files'
+		})
+		vim.keymap.set('n', '<leader>fs', require('telescope.builtin').lsp_workspace_symbols, {
+			desc = 'find symbols'
 		})
 		vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {
 			desc = 'find in buffers'
