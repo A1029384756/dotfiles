@@ -34,6 +34,38 @@ return {
 			severity_sort = false,
 		})
 
+		vim.lsp.handlers['textDocument/rename'] = function(err, result, ctx, _)
+			if err then
+				vim.notify('rename failed: ' .. err.message, vim.log.levels.ERROR)
+				return
+			end
+
+			if not result or not result.changes then
+				vim.notify('nothing to rename', vim.log.levels.INFO)
+				return
+			end
+
+			vim.schedule(function()
+				local client = vim.lsp.get_client_by_id(ctx.client_id)
+				local encoding = client and client.offset_encoding or 'utf-8'
+
+				local to_save = {}
+				for uri, edits in pairs(result.changes) do
+					local bufnr = vim.uri_to_bufnr(uri)
+					vim.lsp.util.apply_text_edits(edits, bufnr, encoding)
+					table.insert(to_save, bufnr)
+				end
+
+				for _, bufnr in ipairs(to_save) do
+					if bufnr ~= -1 then
+						vim.api.nvim_buf_call(bufnr, function()
+							vim.cmd('silent! write')
+						end)
+					end
+				end
+			end)
+		end
+
 		vim.api.nvim_create_autocmd('LspAttach', {
 			group = vim.api.nvim_create_augroup('UserLspConfig', {}),
 			callback = function(ev)
