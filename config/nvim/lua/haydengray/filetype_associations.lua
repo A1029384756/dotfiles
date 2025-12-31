@@ -3,6 +3,7 @@ vim.filetype.add({
 		['Jenkinsfile'] = 'groovy'
 	},
 	extension = {
+		tf = 'terraform',
 		tpp = 'cpp',
 		txx = 'cpp',
 		slang = 'shaderslang',
