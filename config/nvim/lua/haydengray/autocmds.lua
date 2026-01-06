@@ -16,5 +16,6 @@ enable_highlighting({
 	'c',
 	'py',
 	'terraform',
-	'go'
+	'go',
+	'hyprlang'
 })
