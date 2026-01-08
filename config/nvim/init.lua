@@ -22,4 +22,3 @@ require('lazy').setup({
 require('haydengray/mappings')
 require('haydengray/vimopts')
 require('haydengray/filetype_associations')
-require('haydengray/autocmds')
