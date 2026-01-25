@@ -1,6 +1,11 @@
 return {
 	'neovim/nvim-lspconfig',
 	config = function()
+		vim.lsp.config("ctags_lsp", {
+			cmd = { "ctags-lsp" },
+			filetypes = { "c", "cpp" },
+		})
+		vim.lsp.enable("ctags_lsp")
 		vim.lsp.enable('ols')
 		vim.lsp.config('lua_ls', {
 			settings = {
