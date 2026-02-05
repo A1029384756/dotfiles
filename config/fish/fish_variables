@@ -1,4 +1,4 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR __fish_initialized:4300
-SETUVAR fish_user_paths:/home/haydengray/ols\x1e/home/haydengray/Odin\x1elocal/bin
+SETUVAR fish_user_paths:/home/haydengray/\x2elocal/bin\x1e/home/haydengray/ols\x1e/home/haydengray/Odin\x1elocal/bin
