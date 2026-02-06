@@ -3,5 +3,7 @@ theme = Catppuccin Mocha
 background-opacity = 0.9
 font-size = 10.0
 
+shell-integration-features = ssh-env, title, sudo, ssh-terminfo
+
 quit-after-last-window-closed = false
 gtk-titlebar-style = tabs
