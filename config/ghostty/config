@@ -7,3 +7,5 @@ shell-integration-features = ssh-env, title, sudo, ssh-terminfo
 
 quit-after-last-window-closed = false
 gtk-titlebar-style = tabs
+window-decoration = none
+command = /usr/bin/fish
