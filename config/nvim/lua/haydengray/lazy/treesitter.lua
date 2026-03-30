@@ -17,10 +17,22 @@ return {
 					if not vim.tbl_contains(available, lang) then
 						return
 					end
-					ts.install({ lang }):wait(300000)
+					ts.install({ lang })
+					local timer = vim.uv.new_timer()
+					local ft = args.match
+					timer:start(500, 500, vim.schedule_wrap(function()
+						if vim.tbl_contains(ts.get_installed('parsers'), lang) then
+							timer:stop()
+							timer:close()
+							for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+								if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].filetype == ft then
+									vim.treesitter.start(buf)
+									vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+								end
+							end
+						end
+					end))
 				end
-				vim.treesitter.start(args.buf)
-				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 			end
 		})
 	end

@@ -2,10 +2,6 @@ return {
 	'nvim-telescope/telescope.nvim',
 	dependencies = {
 		'nvim-lua/plenary.nvim',
-		{
-			'nvim-telescope/telescope-fzf-native.nvim',
-			build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install'
-		}
 	},
 	config = function()
 		local options = {
@@ -39,7 +35,6 @@ return {
 
 		require('telescope').setup(options)
 		require('telescope').load_extension('harpoon')
-		require('telescope').load_extension('fzf')
 
 		vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {
 			desc = 'find files'

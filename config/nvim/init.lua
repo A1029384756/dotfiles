@@ -1,4 +1,7 @@
 vim.g.mapleader = ' '
+require('haydengray/mappings')
+require('haydengray/vimopts')
+require('haydengray/filetype_associations')
 
 -- Install package manager
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -18,7 +21,3 @@ require('lazy').setup({
 	spec = 'haydengray.lazy',
 	change_detection = { notify = false },
 })
-
-require('haydengray/mappings')
-require('haydengray/vimopts')
-require('haydengray/filetype_associations')
