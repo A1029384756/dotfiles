@@ -19,6 +19,7 @@ vim.opt.ch = 0
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.scrolloff = 10
 vim.opt.updatetime = 250
-vim.o.winborder = 'rounded'
-
-vim.o.shell = get_preferred_shell()
+vim.opt.winborder = 'rounded'
+vim.opt.timeout = true
+vim.opt.timeoutlen = 300
+vim.opt.shell = get_preferred_shell()

@@ -1,26 +1,10 @@
 return {
 	{
-		'vyfor/cord.nvim',
-		build = ':Cord update',
-		event = 'VeryLazy',
-		opts = {
-			assets = {
-				odin = {
-					name = 'Odin', -- 'Grug braining'
-					icon = 'https://github.com/odin-lang/artwork/blob/master/logo/emblem-260.png?raw=true',
-					tooltop = 'odin-lang.org',
-					type = 0,
-				},
-			},
-		},
+		'folke/which-key.nvim',
 	},
 	{
-		'folke/which-key.nvim',
-		config = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 300
-			require('which-key').setup()
-		end,
+		'lukas-reineke/indent-blankline.nvim',
+		main = 'ibl',
 	},
 	{
 		'NeogitOrg/neogit',
@@ -29,11 +13,10 @@ return {
 			'sindrets/diffview.nvim',
 			'nvim-telescope/telescope.nvim',
 		},
-		config = function()
-			local ng = require('neogit')
-			ng.setup {}
-			vim.keymap.set('n', '<leader>ng', ng.open, { desc = 'open neogit' })
-		end,
+		cmd = "Neogit",
+		keys = {
+			{ "<leader>ng", "<cmd>Neogit<cr>", desc = "Neogit UI" },
+		},
 	},
 	{
 		'lewis6991/gitsigns.nvim',
