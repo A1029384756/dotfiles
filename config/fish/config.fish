@@ -26,21 +26,17 @@ end
 fish_add_path ~/.local/bin/
 fish_add_path ~/Odin
 fish_add_path ~/ols
-fish_add_path ~/slang/bin
 
 switch (uname)
   case Darwin
     fish_add_path /opt/homebrew/bin/
   case Linux
     . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+		set SSH_AUTH_SOCK /home/$(whoami)/.var/app/com.bitwarden.desktop/.bitwarden-ssh-agent.sock
 end
 
 set EDITOR nvim
 starship init fish | source
 mise activate fish | source
-
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
 
 set --export SDL_VIDEODRIVER wayland
